@@ -1,8 +1,6 @@
-<p align="center">
-    <img src="https://Moeka.is-a-good-waifu.com/u2P2sMM.png">
-</p>
+This is a fork of Fixator10's repo, an alternate version of his leveler port can be found here which includes the old profile, rank, and level up image generation that was present in Stevy's original leveler layout.
 
 # Installation
-`[p]repo add Fixator10-Cogs https://github.com/fixator10/Fixator10-Cogs V3`
+[p]repo add leveler https://github.com/FlorianMrtnz/Fixator10-Cogs V3
 
-`[p]cog install Fixator10-Cogs <cog_name>`
+[p]cog install leveler leveler
