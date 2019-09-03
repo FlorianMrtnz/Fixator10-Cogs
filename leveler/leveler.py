@@ -2768,31 +2768,30 @@ class Leveler(commands.Cog):
             font=general_info_fnt,
             fill=rep_fill,
         )  # Credits
+        global stats
+        num_align = 230
+        if "linux" in platform.system().lower():
+            global_symbol = "\U0001F30E "
+            fine_adjust = 1
+        else:
+            global_symbol = "G "
+            fine_adjust = 0
 
-        # global stats
-#num_align = 230
-        #if "linux" in platform.system().lower():
-        #    global_symbol = "\U0001F30E "
-       #     fine_adjust = 1
-      #  else:
-       #     global_symbol = "G "
-       #     fine_adjust = 0
-
-     #   rank_txt = global_symbol + self._truncate_text(
-      #      "#{}".format(await self._find_global_rank(user)), 8
-      #  )
-     #   exp_txt = self._truncate_text("{}".format(userinfo["total_exp"]), 8)
-      #  _write_unicode(
-      #      rank_txt,
-      #      num_align - general_info_u_fnt.getsize(global_symbol)[0] + fine_adjust,
-      #      165,
-     #       general_info_fnt,
-      #      general_info_u_fnt,
-       #     info_text_color,
-       # )  # Rank
-       # _write_unicode(
-         #   exp_txt, num_align, 180, general_info_fnt, general_info_u_fnt, info_text_color
-      #  )  # Exp
+        rank_txt = global_symbol + self._truncate_text(
+            "#{}".format(await self._find_global_rank(user)), 8
+        )
+        exp_txt = self._truncate_text("{}".format(userinfo["total_exp"]), 8)
+        _write_unicode(
+            rank_txt,
+            num_align - general_info_u_fnt.getsize(global_symbol)[0] + fine_adjust,
+            165,
+            general_info_fnt,
+            general_info_u_fnt,
+            info_text_color,
+        )   #Rank
+        _write_unicode(
+            exp_txt, num_align, 180, general_info_fnt, general_info_u_fnt, info_text_color
+        )   #Exp
 
         draw.text((105, 220), "Infobox", font=sub_header_fnt, fill=white_color)  # Info Box
         margin = 105
