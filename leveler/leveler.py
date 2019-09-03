@@ -37,7 +37,7 @@ async def non_global_bank(ctx):
 
 
 class Leveler(commands.Cog):
-    """Système de niveaux du Virtoryz."""
+    """Système de niveaux avec génération d'images."""
 
     def __init__(self, bot):
         self.bot = bot
@@ -53,6 +53,7 @@ class Leveler(commands.Cog):
             "removed_backgrounds": {"profile": [], "rank": [], "levelup": []},
             "backgrounds": {"profile": {}, "rank": {}, "levelup": {}},
             "xp": [25, 30],
+
             "default_profile": "https://i.imgur.com/AbZnoLE.png",
             "default_rank": "https://i.imgur.com/AbZnoLE.png",
             "default_levelup": "https://i.imgur.com/AbZnoLE.png",
@@ -315,7 +316,7 @@ class Leveler(commands.Cog):
             )
             icon_url = self.bot.user.avatar_url
         elif "-rep" in options:
-            title = "Leaderboard du Virtoryz\n"
+            title = "Leaderboard du serveur\n"
             for userinfo in db.users.find({}):
                 if "servers" in userinfo and str(server.id) in userinfo["servers"]:
                     try:
@@ -332,7 +333,7 @@ class Leveler(commands.Cog):
             )
             icon_url = server.icon_url
         else:
-            title = "Leaderboard d'XP du Virtoryz\n"
+            title = "Leaderboard d'XP du serveur\n"
             for userinfo in db.users.find({}):
                 try:
                     if "servers" in userinfo and str(server.id) in userinfo["servers"]:
@@ -451,50 +452,6 @@ class Leveler(commands.Cog):
                     int(h), int(m), int(s)
                 )
             )
-
-    #@commands.cooldown(1, 30, commands.BucketType.user)
-    #@commands.command()
-    #@commands.guild_only()
-    #async def daily(self, ctx, user: discord.Member = None):
-        #"""Obtener quotidiennement des crédits."""
-       # org_user = ctx.author
-       # server = ctx.guild
-        # creates user if doesn't exist
-        #await self._create_user(org_user, server)
-       # if user:
-        #    await self._create_user(user, server)
-        #org_userinfo = db.users.find_one({"user_id": str(org_user.id)})
-       # curr_time = time.time()
-
-        #if await self.config.guild(ctx.guild).disabled():
-         #   await ctx.send("**Toutes les commandes pour le système de niveau sont désactivées !**")
-        #    return
-       # if user and user.bot:
-       #     await ctx.send("**Vous ne pouvez pas donner vos dailies à un robot, lmao...**")
-       #     return
-       # if "dailytime" not in org_userinfo:
-      #      org_userinfo["dailytime"] = 0
-
-       # delta = float(curr_time) - float(org_userinfo["dailytime"])
-      #  if user and delta >= 43200.0 and delta > 0:
-      #      userinfo = db.users.find_one({"user_id": str(user.id)})
-        #    db.users.update_one({"user_id": str(org_user.id)}, {"$set": {"dailytime": curr_time}})
-       #    if self._is_mention(path):
-        #        await bank.deposit_credits(path, +200)
-        #        await ctx.send("**Vous avez donné à {} 200 crédits.**").format(self._is_mention(path))
-        #    else:
-         #       await bank.deposit_credits(user, +200)
-             #   await ctx.send("**Vous avez récupéré 200 crédits, vous avez maintenant {} crédits.**").format(bank.get_balance(user))
-       # else:
-            # calulate time left
-        #    seconds = 43200 - delta
-        #    m, s = divmod(seconds, 60)
-        #    h, m = divmod(m, 60)
-        #    await ctx.send(
-        #        "**Vous devez attendre {} heures, {} minutes et {} secondes avant de pouvoir réclamer vos dailies !**".format(
-        #            int(h), int(m), int(s)
-       #         )
-        #    )
     @commands.cooldown(1, 30, commands.BucketType.user)
     @commands.command()
     @commands.guild_only()
@@ -754,7 +711,7 @@ class Leveler(commands.Cog):
             return
 
         if await self.config.guild(ctx.guild).text_only():
-            await ctx.send("**Virty a dit qu'il n'autorisé que le texte.**")
+            await ctx.send("**Red a dit qu'il n'autorisé que le texte.**")
             return
 
         # get correct section for db query
@@ -877,7 +834,7 @@ class Leveler(commands.Cog):
             return
 
         if await self.config.guild(ctx.guild).text_only():
-            await ctx.send("**Virty a dit qu'il n'autorisé que le texte.**")
+            await ctx.send("**Red a dit qu'il n'autorisé que le texte.**")
             return
 
         # get correct section for db query
@@ -967,7 +924,7 @@ class Leveler(commands.Cog):
             return
 
         if await self.config.guild(ctx.guild).text_only():
-            await ctx.send("**Virty a dit qu'il n'autorisé que le texte.**")
+            await ctx.send("**Red a dit qu'il n'autorisé que le texte.**")
             return
 
         # get correct section for db query
@@ -1102,7 +1059,7 @@ class Leveler(commands.Cog):
             return
 
         if await self.config.guild(ctx.guild).text_only():
-            await ctx.send("**Virty a dit qu'il n'autorisé que le texte.**")
+            await ctx.send("**Red a dit qu'il n'autorisé que le texte.**")
             return
 
         if image_name in backgrounds["levelup"].keys():
@@ -1136,7 +1093,7 @@ class Leveler(commands.Cog):
             return
 
         if await self.config.guild(ctx.guild).text_only():
-            await ctx.send("**Virty a dit qu'il n'autorisé que le texte.**")
+            await ctx.send("**Red a dit qu'il n'autorisé que le texte.**")
             return
 
         if image_name in backgrounds["profile"].keys():
@@ -1169,7 +1126,7 @@ class Leveler(commands.Cog):
             return
 
         if await self.config.guild(ctx.guild).text_only():
-            await ctx.send("**Virty a dit qu'il n'autorisé que le texte.**")
+            await ctx.send("**Red a dit qu'il n'autorisé que le texte.**")
             return
 
         if image_name in backgrounds["profile"].keys():
@@ -1203,7 +1160,7 @@ class Leveler(commands.Cog):
             return
 
         if await self.config.guild(ctx.guild).text_only():
-            await ctx.send("**Virty a dit qu'il n'autorisé que le texte.**")
+            await ctx.send("**Red a dit qu'il n'autorisé que le texte.**")
             return
 
         if image_name in backgrounds["rank"].keys():
@@ -1304,7 +1261,7 @@ class Leveler(commands.Cog):
         msg += "**Fond de la carte de rank par défaut:** {}\n".format(default_rank)
         msg += "**Fond de l'image de lvl-up par défaut:** {}\n".format(default_levelup)
         em = discord.Embed(description=msg, colour=await ctx.embed_color())
-        em.set_author(name="Aperçu des paramètres du Virtoryz")
+        em.set_author(name="Aperçu des paramètres du serveur")
         await ctx.send(embed=em)
 
     @sysadm.command()
@@ -2088,7 +2045,7 @@ class Leveler(commands.Cog):
 
         em = discord.Embed(colour=await ctx.embed_color())
         em.set_author(
-            name="Badges-niveaux actuellement liés sur le Virtoryz", icon_url=server.icon_url
+            name="Badges-niveaux actuellement liés sur le serveur", icon_url=server.icon_url
         )
 
         if server_badges is None or "badges" not in server_badges or server_badges["badges"] == {}:
@@ -2150,7 +2107,7 @@ class Leveler(commands.Cog):
             else:
                 await ctx.send(
                     "**Le rôle `{}` a été lié au niveau `{}`. "
-                    "Virty retirera aussi le rôle `{}` lorsque l'utilisateur arrivera au niveau {} !**".format(role_name, level, remove_role, level)
+                    "Red retirera aussi le rôle `{}` lorsque l'utilisateur arrivera au niveau {} !**".format(role_name, level, remove_role, level)
                 )
 
     @role.command(name="unlink")
@@ -2189,7 +2146,7 @@ class Leveler(commands.Cog):
 
         em = discord.Embed(colour=await ctx.embed_color())
         em.set_author(
-            name="Rôles-niveaux actuellement liés sur le Virtoryz", icon_url=server.icon_url
+            name="Rôles-niveaux actuellement liés sur le serveur", icon_url=server.icon_url
         )
 
         if server_roles is None or "roles" not in server_roles or server_roles["roles"] == {}:
@@ -2442,7 +2399,18 @@ class Leveler(commands.Cog):
             return await ctx.send(
                 "**Le fond de lvl-up `{}` a été supprimé.**".format(name)
             )
+    @checks.is_owner()
+    @sysadm.command(pass_context=True, no_pm=True)	
+    async def removeldbuser (self, ctx, user : discord.Member):
+        """Retire un utilisateur du Leaderboard du serveur et reset l'XP. """
+        if await self.config.guild(ctx.guild).disabled():
+            await ctx.send("**Toutes les commandes pour le système de niveau sont désactivées !**")
+            return
+        if user.bot:
+            return
+        server = ctx.guild
 
+       
     @btk.command(name="fondslist")
     @commands.guild_only()
     async def disp_backgrounds(self, ctx, fonds_type):
@@ -3776,11 +3744,11 @@ class Leveler(commands.Cog):
     @sysadm.command()
     @commands.guild_only()
     async def mee6convertlevels(self, ctx, pages: int):
-        """Importe les niveaux de l'API de Mee6 et les importe sur le robot Virty."""
+        """Importe les niveaux de l'API de Mee6 et les importe sur le robot."""
         if await self.config.guild(ctx.guild).mentions():
             msg = (
-                "**{}, les mentions pour les montées de niveaux sont activées dans le Virtoryz.**\n"
-                "Virty pingera tous les utilisateurs qui monteront de niveaux à travers ce processus.\n"
+                "**{}, les mentions pour les montées de niveaux sont activées dans le serveur.**\n"
+                "Red pingera tous les utilisateurs qui monteront de niveaux à travers ce processus.\n"
                 "Répondez `yes` si voulez toutefois continuer la conversion.\n"
                 "Sinon répondez `no` et utiliser la commande `{}sysadm mention` pour désactiver les mentions lors des montées de niveaux."
             ).format(ctx.author.display_name, ctx.prefix)
@@ -3849,7 +3817,7 @@ class Leveler(commands.Cog):
     @sysadm.command()
     @commands.guild_only()
     async def mee6convertranks(self, ctx):
-        """Importe les rôles niveaux de l'API de Mee6 et les importe sur le robot Virty."""
+        """Importe les rôles niveaux de l'API de Mee6 et les importe sur le robot Red."""
         async with self.session.get(
             f"https://mee6.xyz/api/plugins/levels/leaderboard/{ctx.guild.id}"
         ) as r:
